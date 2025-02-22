@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { updateProfile } from "firebase/auth";
 import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa";
-
 import { AppContext } from "../Context/ContextProvider";
 import { useAxiospublic } from "../Hook/useAxiospublic";
 
