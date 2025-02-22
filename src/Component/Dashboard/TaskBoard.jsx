@@ -54,19 +54,13 @@ const TaskBoard = () => {
           inProgress: "inProgress",
           done: "done",
         };
-        const mappedCategory = categoryMap[task.category];
+        const mappedCategory = categoryMap[task?.category];
         if (mappedCategory) {
           formattedTasks[mappedCategory].push(task);
         } else {
-          console.warn("Unknown category:", task.category);
+          console.warn("Unknown category:", task?.category);
         }
       });
-
-      // res.data.forEach((task) => {
-      //   if (["todo", "inProgress", "done"].includes(task.category)) {
-      //     formattedTasks[task.category].push(task);
-      //   }
-      // });
       setTasks(formattedTasks);
     } catch (error) {
       console.error("Error fetching tasks:", error);
@@ -234,34 +228,34 @@ const TaskBoard = () => {
         <div className="flex flex-col flex-1 p-6">
           <div className="flex justify-between items-center mb-4">
             {/* Top Bar */}
-            <div className="flex justify-between items-center mb-4">
+            <div className="flex justify-between items-center md:mb-4">
               <button
                 onClick={() => setIsSidebarOpen(!isSidebarOpen)}
                 className="text-gray-600 dark:text-white text-2xl"
               >
                 <FaBars />
               </button>
-              <h1 className="text-xl font-semibold dark:text-white pl-4">
+              <h1 className="text-xl hidden md:block font-semibold dark:text-white pl-4">
                 Welcome to Task Manager
               </h1>
             </div>
-            <div className="flex justify-between items-center ">
+            <div className="flex justify-between items-center">
               <button
                 onClick={() => setIsDialogOpen(true)}
-                className="bg-[#031741] hover:bg-[#031748ec] mr-6 text-white px-5 py-2.5 rounded-lg flex items-center shadow-lg transition-all duration-300"
+                className="bg-[#031741] hover:bg-[#031748ec] text-sm md:text-lg mr-6 text-white px-3 md:px-5 py-1 md:py-2.5 rounded-lg flex items-center shadow-lg transition-all duration-300"
               >
-                <Plus className="mr-2" size={20} /> Add Task
+                <Plus className="md:mr-2" size={20} /> Add Task
               </button>
               <button
                 onClick={handleLogout}
-                className="bg-gradient-to-r from-blue-400 to-green-500 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center"
+                className="bg-gradient-to-r from-blue-400 to-green-500 hover:bg-blue-700 text-sm md:text-lg text-white px-3 md:px-4 py-1 md:py-2 rounded-lg flex items-center"
               >
                 Logout
               </button>
             </div>
           </div>
 
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {["todo", "inProgress", "done"].map((column) => (
               <TaskColumn
                 key={column}
@@ -279,7 +273,7 @@ const TaskBoard = () => {
         {/* Add Task Dialog */}
         {isDialogOpen && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-            <div className="bg-white p-6 rounded-lg shadow-lg w-1/3">
+            <div className="bg-white p-6 rounded-lg shadow-lg w-5/6 md:w-1/3">
               <h2 className="text-lg font-bold mb-3">Add New Task</h2>
               <input
                 type="text"
@@ -342,12 +336,15 @@ const TaskBoard = () => {
 
               {/* Dialog Title */}
               <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-                Task Options
+                Task
               </h2>
 
               {/* Task Details */}
-              <p className="text-gray-700 dark:text-gray-300 mb-6">
-                {selectedTask.title}
+              <p className="text-gray-700 dark:text-gray-300 mb-2">
+                {selectedTask?.title}
+              </p>
+              <p className="text-gray-500 text-sm dark:text-gray-200 mb-4">
+                {selectedTask?.description}
               </p>
 
               {/* Action Buttons */}
@@ -369,7 +366,7 @@ const TaskBoard = () => {
             </div>
           </div>
         )}
-        {/* Add/Edit Task Dialog */}
+
         {/* Edit Task Modal */}
         {isEditModalOpen && (
           <EditTaskModal

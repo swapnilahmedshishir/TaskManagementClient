@@ -13,8 +13,6 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  console.log(loginUser);
-
   // Get the desired route or default to home page
   const from = location.state?.from?.pathname || "/";
 
@@ -41,12 +39,11 @@ const Login = () => {
         setUser(userData);
         localStorage.setItem("authToken", user.accessToken);
         toast.success("Login successful!");
-        navigate(from, { replace: true });
+        navigate("/dashboard");
       })
       .catch((error) => {
         // Handle errors based on Firebase error codes
         const errorMessage = error.code;
-
         if (errorMessage === "auth/user-not-found") {
           toast.error("User not found. Please check the email.");
         } else if (errorMessage === "auth/wrong-password") {
@@ -63,7 +60,7 @@ const Login = () => {
     try {
       await loginWithGoogle();
       toast.success("Google login successful!");
-      navigate(from, { replace: true });
+      navigate("/dashboard");
     } catch (error) {
       toast.error("Google login failed!");
     }

@@ -28,9 +28,9 @@ const TaskCard = ({
 
   // Define category colors
   const categoryColors = {
-    "To-Do": "bg-blue-500",
-    InProgress: "bg-yellow-500",
-    Done: "bg-green-500",
+    todo: "bg-[#031741]",
+    inProgress: "bg-yellow-500",
+    done: "bg-green-500",
   };
 
   return (
@@ -77,7 +77,7 @@ const TaskCard = ({
       {/* Priority Badge */}
       <div className="mt-3 flex items-center gap-2">
         <span
-          className={`px-2 py-1 text-xs font-medium text-white rounded-md ${
+          className={`px-2 py-1 text-xs font-medium text-white rounded-md capitalize ${
             categoryColors[task?.category] || "bg-gray-500"
           }`}
         >

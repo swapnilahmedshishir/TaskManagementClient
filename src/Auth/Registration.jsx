@@ -64,19 +64,19 @@ const Registration = () => {
 
       // Backend API sync
       const userData = {
-        uid: user.uid,
-        email: user.email,
+        uid: user?.uid,
+        email: user?.email,
         displayName: name,
         photoURL: photoUrl,
       };
 
       // Use Axios to make the POST request
       const response = await axiosPublic.post("/api/register", userData);
-      if (response.status === 201 && response.data.newUser) {
+      if (response.data.user) {
         // New user successfully registered
         setUser(response.data.newUser);
-        toast.success("Registration successfully!");
-        navigate("/dashbord");
+        toast.success(response.data.message);
+        navigate("/dashboard");
       } else if (response.data.existingUser) {
         // User already exists
         setUser(response.data.existingUser);
@@ -87,7 +87,6 @@ const Registration = () => {
       if (error.code === "auth/email-already-in-use") {
         toast.error("Email already in use. Please login.");
       }
-      toast.error("Registration failed. Please try again.");
     }
   };
 
@@ -109,7 +108,7 @@ const Registration = () => {
         // New user successfully registered
         setUser(response.data.newUser);
         toast.success("Google account registered successfully!");
-        navigate("/");
+        navigate("/dashboard");
       } else if (response.data.existingUser) {
         // User already exists
         setUser(response.data.existingUser);

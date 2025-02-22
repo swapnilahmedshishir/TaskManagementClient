@@ -17,8 +17,8 @@ const ContextProvider = ({ children }) => {
   // axios public import
   const axiosPublic = useAxiospublic();
   // api url
-  const apiUrl = "http://localhost:5001";
-  // const apiUrl = "https://server-side-seven-beta.vercel.app";
+  // const apiUrl = "http://localhost:5001";
+  const apiUrl = "https://taskmanagementserver-9ktm.onrender.com";
 
   // user State
   const [user, setUser] = useState(

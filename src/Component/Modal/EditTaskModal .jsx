@@ -13,7 +13,7 @@ const EditTaskModal = ({ task, onClose, onSave }) => {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black backdrop-blur-sm bg-opacity-50">
-      <div className="bg-white w-full max-w-sm md:max-w-md lg:max-w-lg dark:bg-gray-800 p-4 rounded-lg shadow-lg">
+      <div className="bg-white mx-2 w-full max-w-sm md:max-w-md lg:max-w-lg dark:bg-gray-800 p-4 rounded-lg shadow-lg">
         <h2 className="text-lg font-semibold">Edit Task</h2>
 
         <input
